@@ -1,0 +1,9 @@
+package com.company;
+
+/**
+ * Created by ttn on 21/2/21.
+ */
+public class order {
+    customer cs;
+    cashier cash;
+}
