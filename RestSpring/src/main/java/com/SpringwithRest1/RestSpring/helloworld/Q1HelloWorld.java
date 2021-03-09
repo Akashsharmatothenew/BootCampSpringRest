@@ -34,9 +34,9 @@ public class Q1HelloWorld {
         return new HelloWorldBean("Hello World");
     }
     //pathvariable
-    @GetMapping(path ="/Q1/{name}")
+    @GetMapping(path ="/Q2/{name}")
     public HelloWorldBean helloWorldPathvariable(@PathVariable String name){
-        return new HelloWorldBean(String.format("Hello World, %s ",name));
+        return new HelloWorldBean(String.format("Hello , %s ",name));
     }
     @GetMapping(path ="/hello-world-internationalized")
     public String helloWorldInternalization(@RequestHeader(name="Accept-Language",required = false) Locale locale){
