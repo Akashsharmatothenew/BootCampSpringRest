@@ -14,9 +14,9 @@ public class Q2Employee {
     @Min(18)
     int age;
 
-    /*Q2Employee(){
+    Q2Employee(){
 
-    }*/
+    }
     public Q2Employee(int id, String name, int age) {
         this.id = id;
         this.name = name;

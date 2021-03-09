@@ -57,13 +57,13 @@ public class EmployeeService {
         }
         return null;
     }
-    public Q2Employee updateById(int id){
+    public Q2Employee updateById(int id,Q2Employee employee){
         Iterator<Q2Employee>iterator=employees.iterator();
         while(iterator.hasNext()){
-            Q2Employee employee = iterator.next();
-                if (employee.getId()==id){
-                employee.setName("Changed");
-                return employee;
+            Q2Employee employee1= iterator.next();
+            if (employee1.getId()==id){
+                employee1.setName(employee.getName());
+                return employee1;
 
             }
 

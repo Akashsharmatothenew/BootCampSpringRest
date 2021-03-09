@@ -57,8 +57,9 @@ public class Q3EmployeeResource {
             throw new EmployeeNotFound("id - "+id);
     }
     @PutMapping("/employee/Q8/{id}")
-            public void update(@PathVariable int id){
-         Q2Employee employees = employeeService.updateById(id);
+            public void update(@RequestBody Q2Employee employee,@PathVariable int id){
+
+        Q2Employee employees = employeeService.updateById(id,employee);
     }
 
 
