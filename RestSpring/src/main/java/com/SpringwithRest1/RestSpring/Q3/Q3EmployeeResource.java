@@ -21,7 +21,7 @@ public class Q3EmployeeResource {
     EmployeeService employeeService;
     //Get uri("/employee")
     //retriveAllemployee
-    @GetMapping("/employee/Q3")
+    @GetMapping("/Q3")
     public List<Q2Employee>retrieveAllEmployee(){
         return employeeService.findAll();
     }
