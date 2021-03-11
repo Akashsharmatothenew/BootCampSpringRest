@@ -25,7 +25,7 @@ public class RestSpringApplication {
 		localeResolver.setDefaultLocale(Locale.US);
 		return localeResolver;
 	}
-     @Bean
+	@Bean
 	public ResourceBundleMessageSource messageSource(){
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasename("messages");

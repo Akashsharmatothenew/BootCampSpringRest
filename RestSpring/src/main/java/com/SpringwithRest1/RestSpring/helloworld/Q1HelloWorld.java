@@ -23,7 +23,7 @@ public class Q1HelloWorld {
     //method
     //@RequestMapping(method = RequestMethod.GET, path = "/Q1")
 
-    @GetMapping(path="/Q1hello")
+    /*@GetMapping(path="/Q1hello")
     public String displayHello(){
         return "Hello world";
     }
@@ -32,13 +32,13 @@ public class Q1HelloWorld {
     @GetMapping(path = "/Q1")
     public HelloWorldBean helloworldbean(){
         return new HelloWorldBean("Hello World");
-    }
+    }*/
     //pathvariable
     @GetMapping(path ="/Q2/{name}")
     public HelloWorldBean helloWorldPathvariable(@PathVariable String name){
         return new HelloWorldBean(String.format("Hello , %s ",name));
     }
-    @GetMapping(path ="/hello-world-internationalized")
+    @GetMapping(path ="/Q1")
     public String helloWorldInternalization(@RequestHeader(name="Accept-Language",required = false) Locale locale){
         return messageSource.getMessage("good.morning.message",null,locale);
     }

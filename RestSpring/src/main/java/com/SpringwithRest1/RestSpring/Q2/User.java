@@ -1,5 +1,8 @@
 package com.SpringwithRest1.RestSpring.Q2;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -7,17 +10,20 @@ import java.util.Date;
 /**
  * Created by ttn on 7/3/21.
  */
-public class Q2Employee {
+@ApiModel(description = "This is class to details of User.  ")
+public class User {
     Integer id;
+    @ApiModelProperty(notes = "Name should be min 3 character")
     @Size(min=3)
     String name;
     @Min(18)
+            @ApiModelProperty(notes = "Age Should be greater than 18")
     int age;
 
-    Q2Employee(){
+    User(){
 
     }
-    public Q2Employee(int id, String name, int age) {
+    public User(int id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -49,7 +55,7 @@ public class Q2Employee {
 
     @Override
     public String toString() {
-        return "Q2Employee{" +
+        return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
