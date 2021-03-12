@@ -34,6 +34,7 @@ public class Q1HelloWorld {
         return new HelloWorldBean("Hello World");
     }*/
     //pathvariable
+
     @GetMapping(path ="/Q2/{name}")
     public HelloWorldBean helloWorldPathvariable(@PathVariable String name){
         return new HelloWorldBean(String.format("Hello , %s ",name));

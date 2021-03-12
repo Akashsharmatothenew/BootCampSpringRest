@@ -1,22 +1,22 @@
 package com.SpringwithRest1.RestSpring.flitering;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Created by ttn on 11/3/21.
  */
-@JsonFilter("Password")
-public class FiltreingUserService2 {
+public class FilteringUser1 {
     String name;
-    String email;
+    String Email;
+    @JsonIgnore
     String password;
 
-    public FiltreingUserService2() {
+    public FilteringUser1() {
     }
 
-    public FiltreingUserService2(String name, String email, String password) {
+    public FilteringUser1(String name, String Email, String password) {
         this.name = name;
-        this.email = email;
+        this.Email = Email;
         this.password = password;
     }
 
@@ -29,11 +29,11 @@ public class FiltreingUserService2 {
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
     public String getPassword() {

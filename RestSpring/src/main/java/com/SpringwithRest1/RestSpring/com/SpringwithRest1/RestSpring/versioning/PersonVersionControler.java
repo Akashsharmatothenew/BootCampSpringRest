@@ -13,7 +13,17 @@ public class PersonVersionControler {
 
     @GetMapping(value = "Q10/2/param",params = "version=1")
     public PersonV1 paramV1(){
+
         return new PersonV1("Akash Sharma");
+    }
+
+    @GetMapping(value = "Q10/1/produces",produces = "application/tothenew.app-v1+json")
+    public PersonV1 mimeV1(){
+        return new PersonV1("Akash Sharma");
+    }
+    @GetMapping(value = "Q10/1/produces",produces = "application/tothenew.app-v2+json")
+    public PersonV2 mimeV2(){
+        return new PersonV2("Akash Sharma","aka@gmail.com",23,"Delhi");
     }
     @GetMapping(value = "Q10/2/param",params = "version=2")
     public PersonV2 paramV2(){
@@ -27,20 +37,12 @@ public class PersonVersionControler {
     public PersonV2 personV2(){
         return new PersonV2("Akash Sharma","aka@gmail.com",23,"Delhi");
     }
-    @GetMapping(value = "Q10/4/header",headers = "X-API-VERSION=1")
+    @GetMapping(value = "Q10/4/header", headers ="X-API-VERSION=1")
     public PersonV1 headerV1(){
         return new PersonV1("Akash Sharma");
     }
-    @GetMapping(value = "Q10/4/header",headers = "X-API-VERSION=2")
+    @GetMapping(value = "Q10/4/header", headers ="X-API-VERSION=2")
     public PersonV2 headerV2(){
-        return new PersonV2("Akash Sharma","aka@gmail.com",23,"Delhi");
-    }
-    @GetMapping(value = "Q10/1/produces",produces = "application/tothenew.app-v1+json")
-    public PersonV1 mimeV1(){
-        return new PersonV1("Akash Sharma");
-    }
-    @GetMapping(value = "Q10/1/produces",produces = "application/tothenew.app-v2+json")
-    public PersonV2 mimeV2(){
         return new PersonV2("Akash Sharma","aka@gmail.com",23,"Delhi");
     }
 
