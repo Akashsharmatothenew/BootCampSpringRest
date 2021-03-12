@@ -1,16 +1,17 @@
 package com.SpringwithRest1.RestSpring.Q3;
 
-/*import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;*/
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import com.SpringwithRest1.RestSpring.Q2.UsersService;
 import com.SpringwithRest1.RestSpring.Q2.User;
 import com.SpringwithRest1.RestSpring.Q6.EmployeeNotFound;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -18,6 +19,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 /**
  * Created by ttn on 8/3/21.
@@ -35,7 +38,7 @@ public class UsersController {
     }
     //Q4 get one employee one
 
-    /*@GetMapping("/Q11/{id}")
+    @GetMapping("/Q11/{id}")
     public EntityModel<User> retrieveUsers(@PathVariable int id){
         User list= usersService.findOne(id);
          if(list==null)
@@ -47,7 +50,7 @@ public class UsersController {
         resource.add(linkTo.withRel("all-users"));
 
         return resource;
-    }*/
+    }
     //Q5
     //created emplyoee
     @PostMapping("/users/Q3")
