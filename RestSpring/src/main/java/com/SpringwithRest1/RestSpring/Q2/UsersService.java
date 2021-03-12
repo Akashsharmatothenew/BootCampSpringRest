@@ -21,7 +21,6 @@ public class UsersService {
     }
 
     //find all Users
-    @ApiModelProperty(notes = "Uri should be Get All user details")
     public List<User> findAll(){
 
         return Users;

@@ -1,4 +1,4 @@
-package com.SpringwithRest1.RestSpring.com.SpringwithRest1.RestSpring.Swagger;
+package com.SpringwithRest1.RestSpring.Swagger;
 
 
 import org.springframework.context.annotation.Bean;

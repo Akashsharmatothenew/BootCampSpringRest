@@ -1,5 +1,11 @@
 package com.SpringwithRest1.RestSpring.Q3;
 
+/*import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
+import org.springframework.context.annotation.Primary;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;*/
 import com.SpringwithRest1.RestSpring.Q2.UsersService;
 import com.SpringwithRest1.RestSpring.Q2.User;
 import com.SpringwithRest1.RestSpring.Q6.EmployeeNotFound;
@@ -16,6 +22,7 @@ import java.util.List;
 /**
  * Created by ttn on 8/3/21.
  */
+
 @RestController
 public class UsersController {
     @Autowired
@@ -27,15 +34,20 @@ public class UsersController {
         return usersService.findAll();
     }
     //Q4 get one employee one
-    @GetMapping("/users/{id}")
-    @ApiModelProperty(notes = "Uri should be get one user details")
-    public User retrieveUsers(@PathVariable int id){
+
+    /*@GetMapping("/Q11/{id}")
+    public EntityModel<User> retrieveUsers(@PathVariable int id){
         User list= usersService.findOne(id);
          if(list==null)
              throw new EmployeeNotFound("id - "+id);
+         //retrieveAllUsers add link through method
+        EntityModel<User> resource = EntityModel.of(list);
+        WebMvcLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
 
-        return list;
-    }
+        resource.add(linkTo.withRel("all-users"));
+
+        return resource;
+    }*/
     //Q5
     //created emplyoee
     @PostMapping("/users/Q3")
