@@ -26,4 +26,5 @@ public class FilteringController {
         FilteringUser1 saveUsers = filteringUsersService1.save(users);
         return saveUsers;
     }
+
 }

@@ -1,5 +1,6 @@
 package com.SpringwithRest1.RestSpring.flitering;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
