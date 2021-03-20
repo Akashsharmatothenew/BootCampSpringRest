@@ -1,8 +1,10 @@
 package com.SpringWithJpa1.Employee2;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
-
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -11,38 +13,38 @@ import java.util.List;
 @Component
 public class EmployeeService {
     @Autowired
-    EmployeeRepository employeeRepository;
+     EmployeeRepository employeeRepository;
 
-    public Iterable<Employee> getEmploye(){
-         Iterable<Employee> result = employeeRepository.findAll();
-        return result;
-    }
 
-    public Employee createEmployee(Employee employee){
-        return employeeRepository.save(employee);
+    Iterable<Employee>findEmployee(){
+        return employeeRepository.findAll();
     }
-    public Employee updateEmployee(Employee employee,int id){
-        Employee employee1 =employeeRepository.findById(id).get();
-        employee1.setName(employee.getName());
-        employee1.setAge(employee.getAge());
-        employee1.setLocation(employee.getLocation());
-        employeeRepository.save(employee1);
+    //Q1
+   List<Object[]> findEmployeeService(){
 
-        return employee1;
-    }
-    public void deleteEmployee(int id){
-        employeeRepository.deleteById(id);
-    }
-    public long count(){
-        return employeeRepository.count();
-    }
-    public List<Employee>GetDetailFindByName(String name){
-        return employeeRepository.findByName(name);
-    }
-    public List<Employee>GetDetailFindByAgeBetween(int age1,int age2){
-        return employeeRepository.findByAgeBetween(age1,age2);
-    }
-    public List<Employee>GetDetailFindBynNameLike(){
-        return employeeRepository.findByNameLike("A%");
-    }
+        return employeeRepository.findSalaryGraterThanAvg();
+   }
+   //Q2
+   @Transactional
+   public void updateLessThanAvgSalary(int salary){
+       employeeRepository.updateSalaryLessThanAverage(salary,employeeRepository.averageSalary());
+   }
+   //Q3
+   @Transactional
+   public void deleteEmployeeService(){
+
+       employeeRepository.deleteEmployeeBySalary(1100);
+   }
+   //Q4
+    @Transactional
+   public List<Object[]> findEmployee1(){
+       List<Object[]> employee = employeeRepository.finalEmployeeDetail2("singh");
+       return employee;
+   }
+   //@5
+   @Transactional
+   public void deleteEmployeeByAge(){
+
+       employeeRepository.deleteEmployeeByAge(27);
+   }
 }
