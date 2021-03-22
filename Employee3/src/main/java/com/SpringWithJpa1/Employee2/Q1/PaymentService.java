@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 public class PaymentService {
     @Autowired
     PaymentRepository paymentRepository;
-
+    public Iterable<Payment> getdetails(){
+        return paymentRepository.findAll();
+    }
     public void creditCardPayment(){
         CreditCard creditCard = new CreditCard();
         creditCard.setAmount(1000);
