@@ -31,18 +31,22 @@ public class EmployeeService {
         return employee1;
     }
     public void deleteEmployee(int id){
+
         employeeRepository.deleteById(id);
     }
     public long count(){
+
         return employeeRepository.count();
     }
     public List<Employee>GetDetailFindByName(String name){
+
         return employeeRepository.findByName(name);
     }
     public List<Employee>GetDetailFindByAgeBetween(int age1,int age2){
         return employeeRepository.findByAgeBetween(age1,age2);
     }
     public List<Employee>GetDetailFindBynNameLike(){
-        return employeeRepository.findByNameLike("A%");
+
+        return employeeRepository.findByNameLike("A%"+"a%");
     }
 }
