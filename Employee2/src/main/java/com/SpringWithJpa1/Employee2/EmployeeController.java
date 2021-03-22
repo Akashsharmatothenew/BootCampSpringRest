@@ -35,8 +35,8 @@ public class EmployeeController {
 
         return employeeService.findEmployee1();
     }
-    @DeleteMapping("/Q5")
-    public void deleteByAge(){
-        employeeService.deleteEmployeeByAge();
+    @DeleteMapping("/Q5/{age}")
+    public void deleteByAge(@PathVariable int age){
+        employeeService.deleteEmployeeByAge1(age);
     }
 }

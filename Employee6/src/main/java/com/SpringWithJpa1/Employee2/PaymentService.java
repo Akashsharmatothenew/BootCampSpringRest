@@ -23,6 +23,7 @@ public class PaymentService {
         checkbook3.setId(2);
         checkbook3.setAmount(1200);
         checkbook3.setChecknumber("123452");
+        paymentRepository.save(checkbook3);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.SpringWithJpa1.Employee2;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name = "id")
 @Table(name = "checkbook3")
 public class Checkbook3 extends Payment3{
+    @Column(name = "checknumber")
     String checknumber;
 
     public String getChecknumber() {

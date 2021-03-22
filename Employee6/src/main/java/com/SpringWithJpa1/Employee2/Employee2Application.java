@@ -11,7 +11,7 @@ public class Employee2Application {
 
 		ApplicationContext applicationContext =SpringApplication.run(Employee2Application.class, args);
 		PaymentService paymentService = applicationContext.getBean(PaymentService.class);
-		paymentService.cardPayment();
+		//paymentService.cardPayment();
 		paymentService.checkPayment();
 
 	}

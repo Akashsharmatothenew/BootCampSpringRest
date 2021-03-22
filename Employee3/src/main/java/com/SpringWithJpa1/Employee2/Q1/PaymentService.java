@@ -14,13 +14,13 @@ public class PaymentService {
     public void creditCardPayment(){
         CreditCard creditCard = new CreditCard();
         creditCard.setAmount(1000);
-        creditCard.setCreditnumber("123451");
+        creditCard.setCreditnumber("123453");
         paymentRepository.save(creditCard);
     }
     public void checkBookPayment(){
         CheckBook check = new CheckBook();
         check.setAmount(1000);
-        check.setChecknumber("123452");
+        check.setChecknumber("123454");
         paymentRepository.save(check);
     }
 }

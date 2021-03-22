@@ -26,14 +26,14 @@ public class EmployeeService {
    }
    //Q2
    @Transactional
-   public void updateLessThanAvgSalary(int salary){
+   public void updateLessThanAvgSalary(double salary){
        employeeRepository.updateSalaryLessThanAverage(salary,employeeRepository.averageSalary());
    }
    //Q3
    @Transactional
    public void deleteEmployeeService(){
 
-       employeeRepository.deleteEmployeeBySalary(1100);
+       employeeRepository.deleteEmployeeBySalary(1000.0);
    }
    //Q4
     @Transactional
@@ -43,8 +43,8 @@ public class EmployeeService {
    }
    //@5
    @Transactional
-   public void deleteEmployeeByAge(){
+   public void deleteEmployeeByAge1(int age){
 
-       employeeRepository.deleteEmployeeByAge(27);
+       employeeRepository.deleteEmployeeByAge(age);
    }
 }

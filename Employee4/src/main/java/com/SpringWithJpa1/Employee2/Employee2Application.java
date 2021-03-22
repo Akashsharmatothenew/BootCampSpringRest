@@ -8,10 +8,8 @@ import org.springframework.context.ApplicationContext;
 public class Employee2Application {
 
 	public static void main(String[] args) {
+		SpringApplication.run(Employee2Application.class, args);
 
-		ApplicationContext applicationContext=SpringApplication.run(Employee2Application.class, args);
-		EmployeeService employeeService =applicationContext.getBean(EmployeeService.class);
-		employeeService.create();
 
 	}
 

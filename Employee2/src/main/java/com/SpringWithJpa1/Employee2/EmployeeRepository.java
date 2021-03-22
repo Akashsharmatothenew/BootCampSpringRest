@@ -26,12 +26,12 @@ public interface EmployeeRepository extends CrudRepository<Employee,Integer> {
         @org.springframework.transaction.annotation.Transactional
         @Transactional
         @Query(value = "update Employee set salary=:salary where salary<:averageSalary1")
-        void updateSalaryLessThanAverage(@Param("salary") int salary, @Param("averageSalary1")double averageSalary1);
+        void updateSalaryLessThanAverage(@Param("salary") double salary, @Param("averageSalary1")double averageSalary1);
         //Q3 DElete salary
         @Modifying
         @Transactional
         @Query("delete from Employee where salary<:minsalary")
-        void deleteEmployeeBySalary(@Param("minsalary")Integer salary);
+        void deleteEmployeeBySalary(@Param("minsalary")double salary);
         //Q4
         @Query(value ="SELECT empid,empFirstName,empAge FROM employeeTable WHERE empLastName=:LastName",nativeQuery = true)
         List<Object[]>finalEmployeeDetail2(@Param("LastName") String LastName);

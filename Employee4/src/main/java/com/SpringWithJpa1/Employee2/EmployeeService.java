@@ -32,5 +32,9 @@ public class EmployeeService {
        return employee;
 
    }
+   public Employee createEmployeeUsingPost(Employee employee){
+       return employeeRepository.save(employee);
+   }
+
 
 }

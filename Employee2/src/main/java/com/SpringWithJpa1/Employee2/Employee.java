@@ -18,7 +18,7 @@ public class Employee {
     @Column(name = "empLastName")
     String lastname;
     @Column(name = "empSalary")
-    int salary;
+    double salary;
     @Column(name = "empAge")
     int age;
 
@@ -56,7 +56,7 @@ public class Employee {
         this.lastname = lastname;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 
