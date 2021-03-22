@@ -19,10 +19,8 @@ public class EmployeeService {
     }
 
     public Employee createEmployee(Employee employee){
-
         return employeeRepository.save(employee);
     }
-
     public Employee updateEmployee(Employee employee,int id){
         Employee employee1 =employeeRepository.findById(id).get();
         employee1.setName(employee.getName());

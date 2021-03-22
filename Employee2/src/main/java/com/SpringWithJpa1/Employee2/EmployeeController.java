@@ -14,7 +14,7 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
-    @GetMapping("/Q52")
+    @GetMapping("/Q2")
     public Iterable<Employee> getDetail(){
         return employeeService.getEmploye();
     }
@@ -37,8 +37,8 @@ public class EmployeeController {
     }
     //@GetMapping("/Q8")
 
-    @GetMapping("/Q8/{name}")
-    public List<Employee> getByName(@PathVariable String name){
+    @GetMapping("/Q8")
+    public List<Employee> getByName(@RequestParam("name") String name){
         return employeeService.GetDetailFindByName(name);
     }
     @GetMapping("/Q9")
