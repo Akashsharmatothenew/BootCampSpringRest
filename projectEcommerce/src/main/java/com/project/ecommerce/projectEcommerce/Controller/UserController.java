@@ -18,9 +18,11 @@ public class UserController {
         return "Admin home";
     }
 
-    @GetMapping("/user/home")
+    @GetMapping("/seller/home")
     public String userHome(){
         return "User home";
     }
+
+
 
 }

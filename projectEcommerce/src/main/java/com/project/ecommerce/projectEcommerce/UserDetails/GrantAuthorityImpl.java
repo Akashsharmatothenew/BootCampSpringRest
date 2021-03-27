@@ -1,10 +1,6 @@
-package com.project.ecommerce.projectEcommerce.Domain;
+package com.project.ecommerce.projectEcommerce.UserDetails;
 
-import com.project.ecommerce.projectEcommerce.Entity.Role;
 import org.springframework.security.core.GrantedAuthority;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by ttn on 24/3/21.

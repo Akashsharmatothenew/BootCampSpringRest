@@ -1,17 +1,12 @@
 package com.project.ecommerce.projectEcommerce.DaoServices;
 
-import com.project.ecommerce.projectEcommerce.Domain.AppUers;
-import com.project.ecommerce.projectEcommerce.Domain.GrantAuthorityImpl;
-import com.project.ecommerce.projectEcommerce.Entity.Role;
-import com.project.ecommerce.projectEcommerce.Entity.User;
-import com.project.ecommerce.projectEcommerce.Services.UserRepository;
+import com.project.ecommerce.projectEcommerce.UserDetails.AppUers;
+import com.project.ecommerce.projectEcommerce.UserDetails.GrantAuthorityImpl;
+import com.project.ecommerce.projectEcommerce.Entity.Users.User;
+import com.project.ecommerce.projectEcommerce.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
@@ -22,11 +17,11 @@ public class UserDao {
     @Autowired
     UserRepository userRepository;
     public AppUers loadUserByUsername(String username){
-        User users = userRepository.findByFirstName(username);
-        System.out.println(users);
+        User user = userRepository.findByEmailId(username).get(0);//check exception
+        System.out.println(user);
         if(username!=null){
-            return new AppUers(users.getEmail(),users.getPassword(),
-                    users.getRoles().stream().
+            return new AppUers(user.getEmailId(),user.getPassword(),
+                    user.getRoles().stream().
                             map(role->new GrantAuthorityImpl(role.getAuthority())).
                             collect(Collectors.toList()));
         }else {

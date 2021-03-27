@@ -51,9 +51,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/").anonymous()
-                .antMatchers("/admin/home").hasAnyRole("ADMIN")
-                .antMatchers("/seller/home").hasAnyRole("SELLER")
-                .antMatchers("/customer/home").hasAnyRole("CUSTOMER")
+                .antMatchers("/admin/home").hasAnyRole("ROLE_ADMIN")
+                .antMatchers("/seller/home").hasAnyRole("ROLE_SELLER")
+                .antMatchers("/customer/home").hasAnyRole("ROLE_CUSTOMER")
 
 
                 .anyRequest().authenticated()

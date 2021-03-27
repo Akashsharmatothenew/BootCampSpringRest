@@ -8,20 +8,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by ttn on 26/3/21.
+ * Created by ttn on 27/3/21.
  */
 @Service
-public class UserService {
-
+public class SellerService {
     @Autowired
-    UserRepository userRepository;
+    SellerService sellerService;
 
 
-    public List<User> getUserEamilId(String email){
-        return userRepository.findByEmailId(email);
+    public List<User> getSellerEamilId(String email){
+        return sellerService.getSellerEamilId(email);
     }
-    public List<User> getUser(){
-        return userRepository.findAllBy();
-    }
-
 }
