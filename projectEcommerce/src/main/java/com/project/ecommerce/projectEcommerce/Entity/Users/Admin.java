@@ -1,27 +1,22 @@
 package com.project.ecommerce.projectEcommerce.Entity.Users;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
-@PrimaryKeyJoinColumn(name="id")
+@PrimaryKeyJoinColumn(name="user_id")
 public class Admin extends User {
-
-    private String contactnumber;
-
-    public String getContactnumber() {
-        return contactnumber;
+    public Admin() {
     }
 
-    public void setContactnumber(String contactnumber) {
-        this.contactnumber = contactnumber;
+    @Override
+    public Boolean getNonLocked() {
+        return super.getNonLocked();
     }
+
+    @Override
+    public void setNonLocked(Boolean nonLocked) {
+        super.setNonLocked(nonLocked);
+    }
+
+
 }

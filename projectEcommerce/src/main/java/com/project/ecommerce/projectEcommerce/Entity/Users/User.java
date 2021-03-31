@@ -1,51 +1,92 @@
 package com.project.ecommerce.projectEcommerce.Entity.Users;
 
-import javax.persistence.Entity;
-import com.sun.istack.NotNull;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import javax.persistence.*;
-import java.util.Set;
-import javax.validation.constraints.*;
-import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.project.ecommerce.projectEcommerce.AuditingInfo.AuditingInfo;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.*;
 
 @Entity
-@ToString
-@NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED )
+@EntityListeners(AuditingEntityListener.class)
+@Inheritance(strategy = InheritanceType.JOINED)
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 @Table(name = "users")
-public class User {
+public abstract class User extends AuditingInfo<String> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotNull
-    @Email(message = "Email must be correct")
-    private String emailId;
-    @NotEmpty(message = "First Name has to be present")
+    @Column(unique = true)
+    private String username;
+
+    @NotNull
+    @Email(message = "Email cannot be blank ")
+    @Column(unique = true)
+    private String email;
+
+    @NotNull
+    @Column(name="first_name")
+    @NotBlank(message = "First Name cannot be blank ")
     private String firstName;
+
+    // @Size(min = 3,max = 20)
+    @Column(name = "middle_name")
     private String middleName;
-    @NotEmpty(message = "Last Name has to be present")
+
+    @NotNull
+    @Column(name="last_name")
+    @NotBlank(message = "Last Name cannot be blank ")
     private String lastName;
 
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", message = "Password must be in format")
+    @NotNull
+    @NotBlank(message = "Password cannot be blank ")
+    @Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,64})",message="Password must be 8 characters long")
     private String password;
 
-    @Column(columnDefinition = "boolean default false")
-    private Boolean isDelete = false;
-    @Column(columnDefinition = "boolean default false")
-    private Boolean isActive = false;
+    @NotNull
+    @Column(name = "is_deleted")
+    private Boolean deleted=false;
 
-    @Embedded
-    private Address address;
+    @NotNull
+    @Column(name="is_active")
+    public Boolean active=false;
 
+    @NotNull
+    public Boolean nonLocked=true;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Set<Role> roles;
+    public String confirmationToken;
+
+    public Date expiryDate;
+
+    private String image;
+
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "role_id"))
+
+    protected List<Role> role;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<Address> address;
+
+    public User() {
+    }
 
     public Long getId() {
         return id;
@@ -55,12 +96,20 @@ public class User {
         this.id = id;
     }
 
-    public String getEmailId() {
-        return emailId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -95,35 +144,70 @@ public class User {
         this.password = password;
     }
 
-    public Boolean getIsDelete() {
-        return isDelete;
+    public Boolean getIsDeleted() {
+        return deleted;
     }
 
-    public void setIsDelete(Boolean delete) {
-        isDelete = delete;
+    public void setIsDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Boolean getIsActive() {
-        return isActive;
+        return active;
     }
 
     public void setIsActive(Boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
-    public Address getAddress() {
+    public Boolean getNonLocked() {
+        return nonLocked;
+    }
+
+    public void setNonLocked(Boolean nonLocked) {
+        this.nonLocked = nonLocked;
+    }
+
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Integer expiryTimeInMinutes) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Timestamp(cal.getTime().getTime()));
+        cal.add(Calendar.MINUTE, expiryTimeInMinutes);
+        this.expiryDate = new Date(cal.getTime().getTime());;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public List<Role> getRole() {
+        return role;
+    }
+
+    public void setRole(List<Role> role) {
+        this.role = role;
+    }
+
+    public Set<Address> getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(Set<Address> address) {
         this.address = address;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 }

@@ -1,33 +1,53 @@
 package com.project.ecommerce.projectEcommerce.Entity.Users;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.ecommerce.projectEcommerce.AuditingInfo.AuditingInfo;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-@Entity
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
-public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-    private String authority;
-    @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
-    private Set<User> users;
 
-    public Long getId() {
-        return id;
+@Entity
+@Table(name = "Roles")
+public class Role extends AuditingInfo<String>{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "sequence_generator")
+    @SequenceGenerator(name = "sequence_generator",sequenceName = "sequence_table",allocationSize = 1)
+    @Column(name="role_id")
+    private int roleId;
+
+    @NotNull
+    private String authority;
+
+    @NotNull
+    @Column(name = "is_deleted")
+    private Boolean deleted=false;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "role")
+    private Set<User> user;
+
+    public Role() {
+    }
+    public Role(String authority) {
+        this.authority = authority;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Set<User> getUser() {
+        return user;
+    }
+
+    public void setUser(Set<User> user) {
+        this.user = user;
+    }
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     public String getAuthority() {
@@ -38,18 +58,12 @@ public class Role {
         this.authority = authority;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public Boolean getIsDeleted() {
+        return deleted;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setIsDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
-//public void adduser(User user)
-//{
-//    if(users==null)
-//        users=new HashSet<>();
-//    users.add(user);
-//}
 
 }

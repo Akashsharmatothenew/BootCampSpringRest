@@ -1,38 +1,86 @@
 package com.project.ecommerce.projectEcommerce.Entity.Users;
-
 import com.project.ecommerce.projectEcommerce.Entity.Product.Product;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.aspectj.bridge.IMessage;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
-//GST
-//COMPANY_CONTACT
-//COMPANY_NAME
-
 @Entity
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
 @PrimaryKeyJoinColumn(name="user_id")
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"gst"})})
-public class Seller extends User {
-    @Pattern(regexp = "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$",message="gst must be valid")
-    private String gst;
-    @Size(min=10,max=10,message = "contact must be of 10 digit")
+public class Seller extends User implements Serializable{
+    @NotNull
+    private Float gst;
+
+    @NotNull
+    @Column(name="company_contact")
     private String companyContact;
-    @Column(unique = true)
+
+    @NotNull
+    @Column(name = "company_name")
+    //@Pattern(regexp = "(\\+91|0)[0-9]{9}")
     private String companyName;
-    @OneToMany(mappedBy = "seller",cascade = CascadeType.ALL)
-    private Set<Product>products;
+
+    @OneToMany(mappedBy = "seller",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<Product>productSets;
+
+    public Seller() {
+
+    }
+
+    public Float getGst() {
+        return gst;
+    }
+
+    public void setGst(Float gst) {
+        this.gst = gst;
+    }
+
+    public String getCompanyContact() {
+        return companyContact;
+    }
+
+    public void setCompanyContact(String companyContact) {
+        this.companyContact = companyContact;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public Set<Product> getProductSets() {
+        return productSets;
+    }
+
+    public void setProductSets(Set<Product> productSets) {
+        this.productSets = productSets;
+    }
+
+    public void setRole(List<Role> role) {
+        this.role = role;
+    }
+
+    public void setIsActive(Boolean active) {
+        active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "Seller{" +
+                "gst=" + gst +
+                ", companyContact='" + companyContact + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", productSets=" + productSets +
+                '}';
+    }
 
 }

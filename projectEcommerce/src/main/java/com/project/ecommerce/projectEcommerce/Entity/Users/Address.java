@@ -1,44 +1,56 @@
 package com.project.ecommerce.projectEcommerce.Entity.Users;
 
 
-import javax.persistence.Embeddable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.ecommerce.projectEcommerce.AuditingInfo.AuditingInfo;
 
-@Embeddable
-public class Address {
-    private String houseNumber;
-    private String area;
-    private String landmark;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+@Entity
+public class Address extends AuditingInfo<String>{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "sequence_generator")
+    @SequenceGenerator(name = "sequence_generator",sequenceName = "sequence_table",allocationSize = 1)
+    private Long address_id;
+
+    @NotNull
     private String city;
+
+    @NotNull
     private String state;
+
+    @NotNull
     private String country;
-    private Long pinCode;
-    private String addressType;
+
+    @NotNull
+    @Column(name = "address_line",unique = true)
+    private String addressLine;
+
+    @NotNull
+    @Column(name="zip_code")
+    private Integer zipCode;
+
+    @NotNull
+    private String label;
+
+    @NotNull
+    @Column(name="is_deleted")
+    private Boolean deleted=false;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Address() {
     }
 
-    public String getHouseNumber() {
-        return houseNumber;
+    public Long getAddress_id() {
+        return address_id;
     }
 
-    public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public String getLandmark() {
-        return landmark;
-    }
-
-    public void setLandmark(String landmark) {
-        this.landmark = landmark;
+    public void setAddress_id(Long address_id) {
+        this.address_id = address_id;
     }
 
     public String getCity() {
@@ -65,33 +77,43 @@ public class Address {
         this.country = country;
     }
 
-    public Long getPinCode() {
-        return pinCode;
+    public String getAddressLine() {
+        return addressLine;
     }
 
-    public void setPinCode(Long pinCode) {
-        this.pinCode = pinCode;
+    public void setAddressLine(String addressLine) {
+        this.addressLine = addressLine;
     }
 
-    public String getAddressType() {
-        return addressType;
+    public Integer getZipCode() {
+        return zipCode;
     }
 
-    public void setAddressType(String addressType) {
-        this.addressType = addressType;
+    public void setZipCode(Integer zipCode) {
+        this.zipCode = zipCode;
     }
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "houseNumber='" + houseNumber + '\'' +
-                ", area='" + area + '\'' +
-                ", landmark='" + landmark + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", country='" + country + '\'' +
-                ", pinCode=" + pinCode +
-                ", addressType='" + addressType + '\'' +
-                '}';
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
