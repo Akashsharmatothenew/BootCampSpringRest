@@ -1,8 +1,8 @@
 package com.project.ecommerce.projectEcommerce.Controller;
 
 
-import com.project.ecommerce.projectEcommerce.Entity.Users.Role;
-import com.project.ecommerce.projectEcommerce.Services.UserService;
+import com.project.ecommerce.projectEcommerce.Service.UserService;
+import com.project.ecommerce.projectEcommerce.entities.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

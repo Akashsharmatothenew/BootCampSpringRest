@@ -1,6 +1,7 @@
 package com.project.ecommerce.projectEcommerce.Repository;
 
-import com.project.ecommerce.projectEcommerce.Entity.Users.UserAttempts;
+
+import com.project.ecommerce.projectEcommerce.entities.UserAttempts;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

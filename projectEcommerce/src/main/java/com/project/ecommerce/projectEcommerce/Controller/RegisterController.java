@@ -1,10 +1,10 @@
 package com.project.ecommerce.projectEcommerce.Controller;
 
 
-import com.project.ecommerce.projectEcommerce.Dto.CustomerRegisterDTO;
-import com.project.ecommerce.projectEcommerce.Dto.SellerRegisterDTO;
-import com.project.ecommerce.projectEcommerce.Services.CustomerService;
-import com.project.ecommerce.projectEcommerce.Services.SellerService;
+import com.project.ecommerce.projectEcommerce.Service.CustomerService;
+import com.project.ecommerce.projectEcommerce.Service.SellerService;
+import com.project.ecommerce.projectEcommerce.dto.CustomerRegisterDTO;
+import com.project.ecommerce.projectEcommerce.dto.SellerRegisterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;

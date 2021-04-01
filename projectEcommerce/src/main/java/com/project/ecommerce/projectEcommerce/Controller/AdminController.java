@@ -1,11 +1,11 @@
 package com.project.ecommerce.projectEcommerce.Controller;
 
 
-import com.project.ecommerce.projectEcommerce.Dto.CustomerResponseDTO;
-import com.project.ecommerce.projectEcommerce.Dto.SellerResponseDTO;
-import com.project.ecommerce.projectEcommerce.Services.CustomerService;
-import com.project.ecommerce.projectEcommerce.Services.SellerService;
-import com.project.ecommerce.projectEcommerce.Services.UserService;
+import com.project.ecommerce.projectEcommerce.Service.CustomerService;
+import com.project.ecommerce.projectEcommerce.Service.SellerService;
+import com.project.ecommerce.projectEcommerce.Service.UserService;
+import com.project.ecommerce.projectEcommerce.dto.CustomerResponseDTO;
+import com.project.ecommerce.projectEcommerce.dto.SellerResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

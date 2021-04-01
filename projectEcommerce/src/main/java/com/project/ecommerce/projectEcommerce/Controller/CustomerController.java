@@ -1,10 +1,10 @@
 package com.project.ecommerce.projectEcommerce.Controller;
 
 
-
-import com.project.ecommerce.projectEcommerce.Dto.*;
-import com.project.ecommerce.projectEcommerce.Services.CustomerService;
-import com.project.ecommerce.projectEcommerce.Services.UserService;
+import com.project.ecommerce.projectEcommerce.Service.CustomerService;
+import com.project.ecommerce.projectEcommerce.Service.UserService;
+import com.project.ecommerce.projectEcommerce.dto.*;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

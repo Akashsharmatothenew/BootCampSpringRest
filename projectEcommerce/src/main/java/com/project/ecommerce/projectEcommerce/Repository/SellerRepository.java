@@ -1,7 +1,7 @@
 package com.project.ecommerce.projectEcommerce.Repository;
 
 
-import com.project.ecommerce.projectEcommerce.Entity.Users.Seller;
+import com.project.ecommerce.projectEcommerce.entities.Seller;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;

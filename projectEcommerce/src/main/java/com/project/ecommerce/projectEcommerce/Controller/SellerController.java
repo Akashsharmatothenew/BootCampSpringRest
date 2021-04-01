@@ -1,14 +1,14 @@
 package com.project.ecommerce.projectEcommerce.Controller;
 
 
-import com.project.ecommerce.projectEcommerce.Dto.*;
-import com.project.ecommerce.projectEcommerce.Entity.Users.Address;
-import com.project.ecommerce.projectEcommerce.Entity.Users.User;
 import com.project.ecommerce.projectEcommerce.Repository.AddressRepository;
 import com.project.ecommerce.projectEcommerce.Repository.UserRepository;
-import com.project.ecommerce.projectEcommerce.Services.ImageService;
-import com.project.ecommerce.projectEcommerce.Services.SellerService;
-import com.project.ecommerce.projectEcommerce.Services.UserService;
+import com.project.ecommerce.projectEcommerce.Service.ImageService;
+import com.project.ecommerce.projectEcommerce.Service.SellerService;
+import com.project.ecommerce.projectEcommerce.Service.UserService;
+import com.project.ecommerce.projectEcommerce.dto.*;
+import com.project.ecommerce.projectEcommerce.entities.Address;
+import com.project.ecommerce.projectEcommerce.entities.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.HashSet;
+import java.util.List;
 
 @RestController
 public class SellerController {
@@ -41,7 +42,6 @@ public class SellerController {
 
     @GetMapping("seller/profile")
     public SellerProfileResponseDTO viewProfile(Principal principal) {
-
         return sellerService.viewProfile(principal);
     }
 
