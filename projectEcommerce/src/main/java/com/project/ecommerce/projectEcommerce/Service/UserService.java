@@ -83,7 +83,7 @@ public class UserService {
     public boolean updatePassword(String username, PasswordUpdateDTO passwordUpdateDTO) {
         if (passwordUpdateDTO.getPassword().equals(passwordUpdateDTO.getConfirmPassword())) {
             String newPassword = bCryptPasswordEncoder.encode(passwordUpdateDTO.getConfirmPassword());
-            User user = userRepository.findByUsername(username);
+            User user = userRepository.findByEmail(username);
             user.setPassword(newPassword);
             userRepository.save(user);
             emailService.sendEmail(user.getEmail(),"Password Updated","Your password has been updated for your acoount");
@@ -107,7 +107,7 @@ public class UserService {
             return false;
     }
 
-
+    @SuppressWarnings({"Duplicates"})
     public Boolean deactivate(Long id) {
         User user = userRepository.findById(id).orElse(null);
         if (user == null) {
@@ -123,43 +123,49 @@ public class UserService {
     }
 
 
-    public boolean updateAddress(Long address_id, AddressUpdateDTO addressUpdateDTO) {
+    public boolean updateAddress(Long id, AddressUpdateDTO addressUpdateDTO) {
         if(addressUpdateDTO.getCity()!=null)
         {
-            Address address=addressRepository.findById(address_id).get();
+            Address address=addressRepository.findById(id).get();
             address.setCity(addressUpdateDTO.getCity());
             addressRepository.save(address);
         }
         if(addressUpdateDTO.getCountry()!=null)
         {
-            Address address=addressRepository.findById(address_id).get();
+            Address address=addressRepository.findById(id).get();
             address.setCountry(addressUpdateDTO.getCountry());
             addressRepository.save(address);
         }
         if(addressUpdateDTO.getLabel()!=null)
         {
-            Address address=addressRepository.findById(address_id).get();
+            Address address=addressRepository.findById(id).get();
             address.setLabel(addressUpdateDTO.getLabel());
             addressRepository.save(address);
         }
         if(addressUpdateDTO.getState()!=null)
         {
-            Address address=addressRepository.findById(address_id).get();
+            Address address=addressRepository.findById(id).get();
             address.setState(addressUpdateDTO.getState());
             addressRepository.save(address);
         }
         if(addressUpdateDTO.getZipCode()!=null)
         {
-            Address address=addressRepository.findById(address_id).get();
+            Address address=addressRepository.findById(id).get();
             address.setZipCode(addressUpdateDTO.getZipCode());
+            addressRepository.save(address);
+        }
+        if(addressUpdateDTO.getAddressLine()!=null)
+        {
+            Address address=addressRepository.findById(id).get();
+            address.setAddressLine(addressUpdateDTO.getAddressLine());
             addressRepository.save(address);
         }
         return true;
 
     }
 
-    public List<Role> getRole(String username){
-        User user = userRepository.findByUsername(username);
+    public List<Role> getRole(String email){
+        User user = userRepository.findByEmail(email);
         if(user!=null){
             return user.getRole();
         }

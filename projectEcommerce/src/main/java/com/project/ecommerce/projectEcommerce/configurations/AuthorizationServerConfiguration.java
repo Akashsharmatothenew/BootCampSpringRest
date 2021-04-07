@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerEndpointsConfiguration;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
@@ -18,10 +17,11 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+
 import javax.sql.DataSource;
+
 
 @Configuration
 @EnableAuthorizationServer
@@ -32,11 +32,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
 
     @Autowired
+            @Qualifier("dataSource")
     DataSource dataSource;
 
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @Qualifier("appUserDetailsService")
     @Autowired
     UserDetailsService userDetailsService;
 
@@ -60,6 +62,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .tokenStore(tokenStore()).userDetailsService(userDetailsService)
                 .authenticationManager(authenticationManager)
         //   .accessTokenConverter(accessTokenConverter())
+             //   .tokenStore(tokenStore())
         ;
     }
 
@@ -72,8 +75,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Bean
     public TokenStore tokenStore() {
+  //      return new InMemoryTokenStore();
+ //      return new JwtTokenStore(accessTokenConverter());
         return new JdbcTokenStore(dataSource);
-//        return new JwtTokenStore(accessTokenConverter());
     }
     //   return new JwtTokenStore(accessTokenConverter()); }
 

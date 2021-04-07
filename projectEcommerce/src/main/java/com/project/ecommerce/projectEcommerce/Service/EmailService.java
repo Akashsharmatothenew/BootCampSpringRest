@@ -23,7 +23,7 @@ public class EmailService {
         mailMessage.setTo(email);
         mailMessage.setSubject(subject);
         mailMessage.setText("To confirm your e-mail address, please click the link below:\n"
-                + appUrl + "/confirm/buyer?token=" +token +"\n Please continue with this" +
+                + appUrl + "/confirm/Customer?token=" +token +"\n Please continue with this" +
                 " Activation link and confirm your registration");
         // Send mail
         mailSender.send(mailMessage);

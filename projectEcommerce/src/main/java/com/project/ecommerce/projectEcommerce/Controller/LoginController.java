@@ -37,9 +37,9 @@ public class LoginController {
     }
 
     @GetMapping("/user/role")
-    public ResponseEntity<Object> getRole(@RequestParam String username){
+    public ResponseEntity<Object> getRole(@RequestParam String email){
         List<Role> roleList = new ArrayList<>();
-        roleList = userService.getRole(username);
+        roleList = userService.getRole(email);
         if(roleList==null){
             return new ResponseEntity<>("no user found", HttpStatus.BAD_REQUEST);
         } else return new ResponseEntity<>(roleList,HttpStatus.OK);

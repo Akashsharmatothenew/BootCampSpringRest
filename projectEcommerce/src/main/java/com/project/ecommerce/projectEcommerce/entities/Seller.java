@@ -2,6 +2,7 @@ package com.project.ecommerce.projectEcommerce.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -11,7 +12,8 @@ import java.util.Set;
 public class Seller extends User implements Serializable {
 
     @NotNull
-    private Float gst;
+    @Pattern(regexp="(^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$)",message="Password must be 8 characters long")
+    private String gst;
 
     @NotNull
     @Column(name="company_contact")
@@ -29,11 +31,11 @@ public class Seller extends User implements Serializable {
 
     }
 
-    public Float getGst() {
+    public String getGst() {
         return gst;
     }
 
-    public void setGst(Float gst) {
+    public void setGst(String gst) {
         this.gst = gst;
     }
 

@@ -52,22 +52,25 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         return new ModelMapper();
     }
 
-    @Bean
-    CorsFilter corsFilter() {
-        CorsFilter filter = new CorsFilter();
-        return filter;
-    }
+
 
     @Override
     public void configure(final HttpSecurity http) throws Exception {
         http
-                .addFilterBefore(corsFilter(), SessionManagementFilter.class)
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/welcome").permitAll()
                 .antMatchers("/api/swagger-ui.html").permitAll()
                 .antMatchers("/swagger-ui.html**").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()
+                .antMatchers("/confirm/seller").permitAll()
+                .antMatchers("/confirm/customer").permitAll()
+                .antMatchers("/register/seller").permitAll()
+                .antMatchers("/register/customer").permitAll()
+                .antMatchers("/reactivate/link/customer").permitAll()
+                .antMatchers("/receive/token").permitAll()
+                .antMatchers("/reset/password").permitAll()
+                .antMatchers("/user/role").permitAll()
 
                 .antMatchers("/doLogout").hasAnyRole("ADMIN","BUYER","SELLER")
 
@@ -103,14 +106,6 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers("/seller/update/product/variation").hasAnyRole("SELLER")
                 .antMatchers("/seller/all/categories").hasAnyRole("SELLER")
 
-                .antMatchers("/confirm/seller").permitAll()
-                .antMatchers("/confirm/customer").permitAll()
-                .antMatchers("/register/seller").permitAll()
-                .antMatchers("/register/customer").permitAll()
-                .antMatchers("/reactivate/link/customer").permitAll()
-                .antMatchers("/receive/token").permitAll()
-                .antMatchers("/reset/password").permitAll()
-                .antMatchers("/user/role").permitAll()
 
                 .antMatchers("/admin/sellers").hasAnyRole("ADMIN")
                 .antMatchers("/admin/customers").hasAnyRole("ADMIN")

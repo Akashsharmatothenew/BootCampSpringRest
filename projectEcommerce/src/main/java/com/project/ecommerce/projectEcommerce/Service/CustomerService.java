@@ -13,6 +13,7 @@ import com.project.ecommerce.projectEcommerce.exception.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,18 +28,15 @@ public class CustomerService {
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Autowired
     CustomerRepository customerRepository;
-
     @Autowired
     EmailService emailService;
-
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     AddressRepository addressRepository;
+
 
     public Boolean registerCustomer(CustomerRegisterDTO customerRegisterDTO, HttpServletRequest request) {
         Customer customerExists = customerRepository.findByEmail(customerRegisterDTO.getEmail());
@@ -125,7 +123,7 @@ public class CustomerService {
         }
     }
 
-
+    @SuppressWarnings({"Duplicates"})
     public Boolean deactivateCustomer(Long id) {
         Customer customer = customerRepository.findById(id).orElse(null);
         if (customer == null) {
@@ -160,17 +158,17 @@ public class CustomerService {
             return false;
         }
         if (updateProfileDTO.getFirstName() != null) {
-            User user = userRepository.findByUsername(username);
+            User user = userRepository.findByEmail(username);
             user.setFirstName(updateProfileDTO.getFirstName());
             userRepository.save(user);
         }
         if (updateProfileDTO.getMiddleName() != null) {
-            User user = userRepository.findByUsername(username);
+            User user = userRepository.findByEmail(username);
             user.setMiddleName(updateProfileDTO.getMiddleName());
             userRepository.save(user);
         }
         if (updateProfileDTO.getLastName() != null) {
-            User user = userRepository.findByUsername(username);
+            User user = userRepository.findByEmail(username);
             user.setLastName(updateProfileDTO.getLastName());
             userRepository.save(user);
         }
@@ -197,7 +195,7 @@ public class CustomerService {
 
     public List<AddressResponseDTO> getAddressList(String username)
     {
-        User user=userRepository.findByUsername(username);
+        User user=userRepository.findByEmail(username);
         if(user!=null)
         {
             Set<Address> addresses=user.getAddress();
@@ -221,7 +219,7 @@ public class CustomerService {
 
     public CustomerProfileResponseDTO viewProfile(Principal principal) {
         String username=principal.getName();
-        Customer customer=customerRepository.findByUsername(username);
+        Customer customer=customerRepository.findByEmail(username);
         ModelMapper modelMapper=new ModelMapper();
        CustomerProfileResponseDTO customerProfileResponseDto=modelMapper.map(customer,CustomerProfileResponseDTO.class);
         return customerProfileResponseDto;
@@ -229,7 +227,7 @@ public class CustomerService {
 
 
     public Boolean addAddress(String username, @Valid AddressDTO addressDTO) {
-        User buyer=userRepository.findByUsername(username);
+        User buyer=userRepository.findByEmail(username);
         ModelMapper modelMapper=new ModelMapper();
         Address address= modelMapper.map(addressDTO,Address.class);
         HashSet<Address> addressHashSet=new HashSet<Address>();

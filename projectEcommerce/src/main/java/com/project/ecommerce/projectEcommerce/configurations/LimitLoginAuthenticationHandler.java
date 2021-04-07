@@ -4,6 +4,7 @@ package com.project.ecommerce.projectEcommerce.configurations;
 import com.project.ecommerce.projectEcommerce.Repository.UserAttemptsRepository;
 import com.project.ecommerce.projectEcommerce.entities.UserAttempts;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -26,7 +27,7 @@ public class LimitLoginAuthenticationHandler extends DaoAuthenticationProvider {
 
     @Autowired
     @Override
-    public void setUserDetailsService(UserDetailsService userDetailsService) {
+    public void setUserDetailsService(@Qualifier("appUserDetailsService") UserDetailsService userDetailsService) {
         super.setUserDetailsService(userDetailsService);
     }
 

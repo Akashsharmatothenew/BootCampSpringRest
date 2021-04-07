@@ -29,9 +29,9 @@ public class SellerResponseDTO {
     private String companyContact;
 
     @NotNull
-    private Float gst;
+    private String  gst;
 
-    public SellerResponseDTO(@NotNull Long id, @NotNull String email, @NotNull String firstName, @NotNull String middleName, @NotNull String lastName, @NotNull Boolean active, @NotNull String companyName, @NotNull String companyContact, @NotNull Float gst) {
+    public SellerResponseDTO(@NotNull Long id, @NotNull String email, @NotNull String firstName, @NotNull String middleName, @NotNull String lastName, @NotNull Boolean active, @NotNull String companyName, @NotNull String companyContact, @NotNull String gst) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
@@ -107,11 +107,11 @@ public class SellerResponseDTO {
         this.companyContact = companyContact;
     }
 
-    public Float getGst() {
+    public String getGst() {
         return gst;
     }
 
-    public void setGst(Float gst) {
+    public void setGst(String gst) {
         this.gst = gst;
     }
 }

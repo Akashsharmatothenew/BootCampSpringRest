@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -41,7 +42,7 @@ public class SellerController {
 
 
     @GetMapping("seller/profile")
-    public SellerProfileResponseDTO viewProfile(Principal principal) {
+    public SellerProfileResponseDTO viewProfile(Authentication principal) {
         return sellerService.viewProfile(principal);
     }
 
@@ -69,7 +70,7 @@ public class SellerController {
     @PostMapping("seller/add/address")
     public ResponseEntity<String> addAddress(Principal principal, @Valid @RequestBody AddressDTO addressDTO) {
         String username = principal.getName();
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByEmail(username);
         System.out.println(user.toString());
         System.out.println(user.getId().toString());
         Long id = addressRepository.fetchAddresses(user.getId());

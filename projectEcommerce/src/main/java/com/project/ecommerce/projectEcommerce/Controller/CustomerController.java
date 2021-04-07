@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
@@ -83,9 +84,9 @@ public class CustomerController {
     }
 
 
-    @PatchMapping("/customer/update/address")
-    public ResponseEntity<String> updateAddress(@Valid @RequestParam Long address_id, @RequestBody AddressUpdateDTO addressUpdateDTO) {
-        if (userService.updateAddress(address_id, addressUpdateDTO)) {
+    @PostMapping("/customer/update/address")
+    public ResponseEntity<String> updateAddress(@Valid @RequestParam Long id, @RequestBody AddressUpdateDTO addressUpdateDTO) {
+        if (userService.updateAddress(id, addressUpdateDTO)) {
             return new ResponseEntity<String>("The address is updated for the given id", HttpStatus.OK);
         } else
             return new ResponseEntity<String>("The address is not updated for the given id", HttpStatus.EXPECTATION_FAILED);

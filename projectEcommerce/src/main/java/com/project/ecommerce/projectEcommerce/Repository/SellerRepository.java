@@ -20,6 +20,6 @@ public interface SellerRepository extends PagingAndSortingRepository<Seller,Long
     @Override
     Page<Seller> findAll(Pageable pageable);
 
-    Seller findByUsername(String username);
+   // Seller findByUsername(String username);
 
 }

@@ -26,7 +26,7 @@ public class ImageService {
         try {
             byte[] bytes = image.getBytes();
             String username = principal.getName();
-            User user=userRepository.findByUsername(username);
+            User user=userRepository.findByEmail(username);
             String fileName = renameFile(image.getOriginalFilename(), user);
             Path path = Paths.get("/home/sharma/images" + fileName);
             Files.write(path, bytes);

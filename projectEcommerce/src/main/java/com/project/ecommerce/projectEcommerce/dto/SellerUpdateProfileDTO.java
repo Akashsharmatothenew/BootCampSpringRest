@@ -14,7 +14,7 @@ public class SellerUpdateProfileDTO {
     private String lastName;
 
     @NotNull
-    private Float gst;
+    private String gst;
 
     @NotNull
     private String companyName;
@@ -49,11 +49,11 @@ public class SellerUpdateProfileDTO {
         this.lastName = lastName;
     }
 
-    public Float getGst() {
+    public String getGst() {
         return gst;
     }
 
-    public void setGst(Float gst) {
+    public void setGst(String gst) {
         this.gst = gst;
     }
 

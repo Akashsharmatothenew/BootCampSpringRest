@@ -35,7 +35,7 @@ public class UserDao {
 
     AppUser loadUserByUsername(String username) {
         System.out.println("In User dao");
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByEmail(username);
         List<GrantedAuthority> grantedAuthorities = new LinkedList<>();
         for (Role role : user.getRole()) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getAuthority()));
@@ -43,7 +43,7 @@ public class UserDao {
         System.out.println("Out of user dao");
         System.out.println(user);
         if (username != null) {
-            return new AppUser(user.getUsername(), user.getPassword(), grantedAuthorities, user.getNonLocked(),user.getIsActive());
+            return new AppUser(user.getEmail(), user.getPassword(), grantedAuthorities, user.getNonLocked(),user.getIsActive());
         } else {
             throw new RuntimeException();
         }
@@ -53,7 +53,7 @@ public class UserDao {
         UserAttempts userAttemptExists=userAttemptsRepository.findByUsername(username);
 
         if(userAttemptExists!=null) {
-            User user = userRepository.findByUsername(username);
+            User user = userRepository.findByEmail(username);
             if (user != null) {
                 userAttemptExists.setAttempts(userAttemptExists.getAttempts() + 1);
                 userAttemptExists.setLastModified(new Date());
@@ -61,14 +61,14 @@ public class UserDao {
             }
             if (userAttemptExists.getAttempts() >= MAX_ATTEMPTS) {
 
-                User userFound=userRepository.findByUsername(username);
+                User userFound=userRepository.findByEmail(username);
                 userFound.setNonLocked(false);
                 userRepository.save(user);
                 emailService.sendEmail(user.getEmail(),"Account Locked","Your Account has been locked as you have used the three attempts");
             }
         }
         else {
-            User user = userRepository.findByUsername(username);
+            User user = userRepository.findByEmail(username);
             if (user != null) {
                 UserAttempts userAttempts = new UserAttempts();
                 userAttempts.setUsername(username);

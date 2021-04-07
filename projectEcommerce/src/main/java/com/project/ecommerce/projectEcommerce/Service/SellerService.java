@@ -15,6 +15,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -67,7 +69,7 @@ public class SellerService {
     }
 
 
-    public Boolean activateSeller(Long id){
+    /*public Boolean activateSeller(Long id){
         Seller seller=sellerRepository.findById(id).orElse(null);
         if(seller == null){
             throw new UserNotFoundException("There is no Seller with the given id");
@@ -97,7 +99,7 @@ public class SellerService {
         else {
             return false;
         }
-    }
+    }*/
 
 
     public PageImpl<SellerResponseDTO> pagingSeller(Pageable pageable) {
@@ -116,36 +118,36 @@ public class SellerService {
     public boolean updateProfile(String username, SellerUpdateProfileDTO sellerUpdateProfileDTO) {
         if(sellerUpdateProfileDTO.getFirstName()!=null)
         {
-            Seller seller=sellerRepository.findByUsername(username);
+            Seller seller=sellerRepository.findByEmail(username);
             seller.setFirstName(sellerUpdateProfileDTO.getFirstName());
             sellerRepository.save(seller);
         }
         if(sellerUpdateProfileDTO.getMiddleName()!=null)
         {
-            Seller seller=sellerRepository.findByUsername(username);
+            Seller seller=sellerRepository.findByEmail(username);
             seller.setMiddleName(sellerUpdateProfileDTO.getMiddleName());
             sellerRepository.save(seller);
         }
         if(sellerUpdateProfileDTO.getLastName()!=null)
         {
-            Seller seller=sellerRepository.findByUsername(username);
+            Seller seller=sellerRepository.findByEmail(username);
             seller.setLastName(sellerUpdateProfileDTO.getLastName());
             sellerRepository.save(seller);
         }
         if(sellerUpdateProfileDTO.getGst()!=null)
         {
-            Seller seller=sellerRepository.findByUsername(username);
+            Seller seller=sellerRepository.findByEmail(username);
             seller.setGst(sellerUpdateProfileDTO.getGst());
             sellerRepository.save(seller);
         }
         if(sellerUpdateProfileDTO.getCompanyContact()!=null)
         {
-            Seller seller=sellerRepository.findByUsername(username);
+            Seller seller=sellerRepository.findByEmail(username);
             seller.setCompanyContact(sellerUpdateProfileDTO.getCompanyContact());
             sellerRepository.save(seller);
         }
         if(sellerUpdateProfileDTO.getCompanyName()!=null) {
-            Seller seller = sellerRepository.findByUsername(username);
+            Seller seller = sellerRepository.findByEmail(username);
             seller.setCompanyContact(sellerUpdateProfileDTO.getCompanyContact());
             sellerRepository.save(seller);
         }
@@ -155,7 +157,7 @@ public class SellerService {
 
     public SellerProfileResponseDTO viewProfile(Principal principal) {
         String username=principal.getName();
-        Seller seller=sellerRepository.findByUsername(username);
+        Seller seller=sellerRepository.findByEmail(username);
         ModelMapper modelMapper=new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
         SellerProfileResponseDTO sellerProfileResponseDTO=modelMapper.map(seller,SellerProfileResponseDTO.class);
