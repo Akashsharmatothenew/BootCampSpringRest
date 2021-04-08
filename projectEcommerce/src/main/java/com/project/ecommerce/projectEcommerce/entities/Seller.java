@@ -12,7 +12,7 @@ import java.util.Set;
 public class Seller extends User implements Serializable {
 
     @NotNull
-    @Pattern(regexp="(^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$)",message="Password must be 8 characters long")
+  //  @Pattern(regexp="(^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$)",message="Password must be 8 characters long")
     private String gst;
 
     @NotNull

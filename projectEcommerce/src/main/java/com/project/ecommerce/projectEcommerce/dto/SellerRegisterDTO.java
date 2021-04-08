@@ -6,7 +6,7 @@ import javax.validation.constraints.*;
 public class SellerRegisterDTO {
 
     @NotNull
-    private Float gst;
+    private String gst;
 
     @NotNull
     @Column(unique = true)
@@ -48,11 +48,11 @@ public class SellerRegisterDTO {
     public SellerRegisterDTO() {
     }
 
-    public Float getGst() {
+    public String getGst() {
         return gst;
     }
 
-    public void setGst(Float gst) {
+    public void setGst(String gst) {
         this.gst = gst;
     }
 

@@ -29,18 +29,18 @@ public class SellerProfileResponseDTO {
     private String companyContact;
 
     @NotNull
-    private Float gst;
+    private String gst;
 
     private List<AddressResponseDTO> addressResponseDTOList;
 
     public SellerProfileResponseDTO() {
     }
 
-    public Float getGst() {
+    public String getGst() {
         return gst;
     }
 
-    public void setGst(Float gst) {
+    public void setGst(String gst) {
         this.gst = gst;
     }
 
