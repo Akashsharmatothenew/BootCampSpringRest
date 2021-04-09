@@ -26,6 +26,9 @@ public class ProductRequestDTO {
 
     private Seller seller;
 
+    public ProductRequestDTO() {
+    }
+
     public ProductRequestDTO(@NotNull String name, String description, @NotNull Long categoryId, Boolean cancellable, Boolean returnable, @NotNull String brand, Seller seller) {
         this.name = name;
         this.description = description;

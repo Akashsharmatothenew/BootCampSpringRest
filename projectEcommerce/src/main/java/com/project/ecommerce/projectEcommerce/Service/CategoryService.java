@@ -28,13 +28,10 @@ public class CategoryService {
 
     @Autowired
     CategoryRepository categoryRepository;
-
     @Autowired
     CategoryMetadataFieldRepository categoryMetadataFieldRepository;
-
     @Autowired
     CategoryMetadataFieldValueRepository categoryMetadataFieldValueRepository;
-
     @Autowired
     ModelMapper modelMapper;
 

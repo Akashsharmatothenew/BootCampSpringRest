@@ -206,8 +206,9 @@ public class ProductService {
                     String values = categoryMetadataFieldValueRepository.fetchMetadataValues(categoryId, fieldId);
                     List<String> valuesList=Arrays.asList(values.split(","));
                     for (String str : metadata) {
-                        if (!valuesList.contains(str)) {
+                        if (valuesList.contains(str)) {
                             throw new MetadataFieldValueNotFoundException("There is no metadata for given category id and field id");
+
                         }
                     }
                 }
@@ -302,7 +303,7 @@ public class ProductService {
                         String values = categoryMetadataFieldValueRepository.fetchMetadataValues(categoryId,fieldId);
                         List<String> valuesList = Arrays.asList(values.split(","));
                         for (String str : metadata) {
-                            if (!valuesList.contains(str)) {
+                            if (valuesList.contains(str)) {
                                 throw new MetadataFieldValueNotFoundException("There is no metadata for given category id and field id");
                             }
                         }
