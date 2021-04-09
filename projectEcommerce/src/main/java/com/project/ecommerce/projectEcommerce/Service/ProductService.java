@@ -226,13 +226,6 @@ public class ProductService {
             throw new CategoryNotFoundException("There is no product associated with this category");
     }
 
-//    public List<String> splitList(List<String> list){
-//        for (String str : list) {
-//            return Arrays.asList(str.split(","));
-//        }
-//        return list;
-//    }
-
 
     public ProductVariationResponseDTO viewProductVariation(Principal principal, Long productVariationId) throws ProductVariationNotFoundException {
         String username = principal.getName();

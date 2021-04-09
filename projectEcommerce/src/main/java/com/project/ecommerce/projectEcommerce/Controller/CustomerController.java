@@ -32,6 +32,7 @@ public class CustomerController {
     @Autowired
     UserService userService;
 
+
     @GetMapping("/customer/profile")
     public CustomerProfileResponseDTO viewProfile(Principal principal) {
         return customerService.viewProfile(principal);

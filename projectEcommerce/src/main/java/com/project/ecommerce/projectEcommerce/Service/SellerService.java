@@ -69,39 +69,6 @@ public class SellerService {
     }
 
 
-    /*public Boolean activateSeller(Long id){
-        Seller seller=sellerRepository.findById(id).orElse(null);
-        if(seller == null){
-            throw new UserNotFoundException("There is no Seller with the given id");
-        }
-        else if(!seller.getIsActive()){
-            seller.setIsActive(true);
-            sellerRepository.save(seller);
-            emailService.sendEmail(seller.getEmail(),"Account Activated","Your account has been activated.");
-            return true;
-        }
-        else
-            return false;
-    }
-
-
-    public Boolean deactivateSeller(Long id) {
-        Seller seller=sellerRepository.findById(id).orElse(null);
-        if(seller == null){
-            throw new UserNotFoundException("There is no Seller with the given id");
-        }
-        else if(seller.getIsActive()){
-            seller.setIsActive(false);
-            sellerRepository.save(seller);
-            emailService.sendEmail(seller.getEmail(),"Account De-Activated","Your account has been de-activated.");
-            return true;
-        }
-        else {
-            return false;
-        }
-    }*/
-
-
     public PageImpl<SellerResponseDTO> pagingSeller(Pageable pageable) {
         pageable= PageRequest.of(0,10, Sort.Direction.ASC,"username");
         Page<Seller> sellers=sellerRepository.findAll(pageable);
