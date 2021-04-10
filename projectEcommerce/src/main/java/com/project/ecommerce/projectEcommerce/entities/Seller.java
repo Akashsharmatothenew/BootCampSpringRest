@@ -13,7 +13,7 @@ public class Seller extends User implements Serializable {
 
     @NotNull
     @Column(unique = true)
-  //  @Pattern(regexp="(^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$)",message="Password must be 8 characters long")
+  //  @Pattern(regexp="(^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$)",message="Gst should be valid in govt norms")
     private String gst;
 
     @NotNull
