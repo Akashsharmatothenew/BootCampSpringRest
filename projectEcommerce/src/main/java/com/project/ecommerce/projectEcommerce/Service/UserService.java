@@ -27,16 +27,13 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Autowired
     AddressRepository addressRepository;
-
-
     @Autowired
     EmailService emailService;
+
 
     public Boolean receiveToken(String email, HttpServletRequest request) {
         User user = userRepository.findByEmail(email);

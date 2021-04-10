@@ -28,7 +28,6 @@ public class CustomerController {
 
     @Autowired
     CustomerService customerService;
-
     @Autowired
     UserService userService;
 

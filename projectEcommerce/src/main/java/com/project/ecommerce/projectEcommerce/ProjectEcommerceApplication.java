@@ -22,12 +22,6 @@ import java.util.Locale;
 @SpringBootApplication
 public class ProjectEcommerceApplication {
 
-	@Autowired
-	TokenStore tokenStore;
-
-	@Autowired
-	MessageSource messageSource;
-
 	@Bean
 	public AuditorAware<String> auditorAware() {
 		return new AuditingAwareImpl();

@@ -26,28 +26,20 @@ public class ProductService {
 
     @Autowired
     SellerRepository sellerRepository;
-
     @Autowired
     CategoryRepository categoryRepository;
-
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     EmailService emailService;
-
     @Autowired
     ProductRepository productRepository;
-
     @Autowired
     CategoryMetadataFieldValueRepository categoryMetadataFieldValueRepository;
-
     @Autowired
     ProductVariationRepository productVariationRepository;
-
     @Autowired
     ModelMapper modelMapper;
-
     @Autowired
     ImageService imageService;
 

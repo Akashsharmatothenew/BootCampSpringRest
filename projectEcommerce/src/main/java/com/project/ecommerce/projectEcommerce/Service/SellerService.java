@@ -32,10 +32,8 @@ public class SellerService {
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Autowired
     SellerRepository sellerRepository;
-
     @Autowired
     EmailService emailService;
 
