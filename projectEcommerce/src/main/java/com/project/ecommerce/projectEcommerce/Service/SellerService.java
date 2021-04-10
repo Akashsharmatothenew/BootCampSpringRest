@@ -37,9 +37,6 @@ public class SellerService {
     SellerRepository sellerRepository;
 
     @Autowired
-    AddressRepository addressRepository;
-
-    @Autowired
     EmailService emailService;
 
 

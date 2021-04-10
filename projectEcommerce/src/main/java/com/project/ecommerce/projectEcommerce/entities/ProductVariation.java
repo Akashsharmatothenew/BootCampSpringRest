@@ -3,17 +3,11 @@ package com.project.ecommerce.projectEcommerce.entities;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
-//@TypeDefs(value = {
-//        @TypeDef(name = "json", typeClass = JsonStringType.class),
-//        @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-//})
+
 @Entity
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="productVariationId")
 public class ProductVariation {
@@ -28,8 +22,6 @@ public class ProductVariation {
 
     private Float price;
 
-//    @Type(type = "json")
-//    @Column(columnDefinition = "JSON")
     private String metadata;
 
     @Column(name = "primary_image_name")
