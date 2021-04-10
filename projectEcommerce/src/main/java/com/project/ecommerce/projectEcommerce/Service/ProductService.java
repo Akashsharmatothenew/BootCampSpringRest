@@ -138,25 +138,13 @@ public class ProductService {
                 Product productByName = productRepository.findByNameAndSellerAndBrandAndCategory(productUpdateRequestDTO.getName(), seller, product.getBrand(), product.getCategory());
                 if (productByName == null) {
                     product.setName(productUpdateRequestDTO.getName());
+                    product.setDescription(productUpdateRequestDTO.getDescription());
+                    product.setIsCancellable(productUpdateRequestDTO.getIsCancellable());
+                    product.setIsReturnable(productUpdateRequestDTO.getIsReturnable());
                     productRepository.save(product);
                     return true;
                 } else
                     throw new ProductAlreadyExistsException("The product already exists with this name");
-            }
-            if (productUpdateRequestDTO.getDescription() != null) {
-                product.setDescription(productUpdateRequestDTO.getDescription());
-                productRepository.save(product);
-                return true;
-            }
-            if (productUpdateRequestDTO.getIsCancellable() != null) {
-                product.setIsCancellable(productUpdateRequestDTO.getIsCancellable());
-                productRepository.save(product);
-                return true;
-            }
-            if (productUpdateRequestDTO.getIsReturnable() != null) {
-                product.setIsReturnable(productUpdateRequestDTO.getIsReturnable());
-                productRepository.save(product);
-                return true;
             }
         }
         return false;
